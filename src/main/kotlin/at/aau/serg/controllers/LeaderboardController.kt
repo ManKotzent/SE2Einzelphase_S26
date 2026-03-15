@@ -4,12 +4,10 @@ import at.aau.serg.models.GameResult
 import at.aau.serg.services.GameResultService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.server.ResponseStatusException
-import kotlin.unaryMinus
 
 @RestController
 @RequestMapping("/leaderboard")
@@ -20,7 +18,7 @@ class LeaderboardController(
     @GetMapping
     fun getLeaderboard(@RequestParam(required = false) rank: Int?): List<GameResult> {
         // ID based tiebreaker is upheld for same score, same time edge cases
-        val leaderboard = gameResultService.getGameResults().sortedWith(compareBy({ -it.score }, { -it.timeInSeconds }, { it.id }));
+        val leaderboard = gameResultService.getGameResults().sortedWith(compareBy({ -it.score }, { -it.timeInSeconds }, { it.id }))
 
         if(rank == null) return leaderboard
 
