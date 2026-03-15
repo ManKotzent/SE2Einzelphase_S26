@@ -30,7 +30,7 @@ class LeaderboardControllerTests {
 
         whenever(mockedService.getGameResults()).thenReturn(listOf(second, first, third))
 
-        val res: List<GameResult> = controller.getLeaderboard()
+        val res: List<GameResult> = controller.getLeaderboard(null)
 
         verify(mockedService).getGameResults()
         assertEquals(3, res.size)
@@ -47,7 +47,7 @@ class LeaderboardControllerTests {
 
         whenever(mockedService.getGameResults()).thenReturn(listOf(second, first, third))
 
-        val res: List<GameResult> = controller.getLeaderboard()
+        val res: List<GameResult> = controller.getLeaderboard(null)
 
         verify(mockedService).getGameResults()
         assertEquals(3, res.size)
@@ -64,7 +64,7 @@ class LeaderboardControllerTests {
 
         whenever(mockedService.getGameResults()).thenReturn(listOf(second, first, third))
 
-        val res: List<GameResult> = controller.getLeaderboard()
+        val res: List<GameResult> = controller.getLeaderboard(null)
 
         verify(mockedService).getGameResults()
         assertEquals(3, res.size)
@@ -79,7 +79,7 @@ class LeaderboardControllerTests {
 
         whenever(mockedService.getGameResults()).thenReturn(results)
 
-        val res = controller.getLeaderboardForRank(1)
+        val res = controller.getLeaderboard(1)
 
         verify(mockedService).getGameResults()
         assertEquals(4, res.size)
@@ -92,7 +92,7 @@ class LeaderboardControllerTests {
 
         whenever(mockedService.getGameResults()).thenReturn(results)
 
-        val res = controller.getLeaderboardForRank(3)
+        val res = controller.getLeaderboard(3)
 
         assertEquals(6, res.size)
         assertEquals(listOf(1,2,3,4,5,6), res.map { it.id.toInt() })
@@ -104,7 +104,7 @@ class LeaderboardControllerTests {
 
         whenever(mockedService.getGameResults()).thenReturn(results)
 
-        val res = controller.getLeaderboardForRank(5)
+        val res = controller.getLeaderboard(5)
 
         assertEquals(7, res.size)
         assertEquals(listOf(2,3,4,5,6,7,8), res.map { it.id.toInt() })
@@ -116,7 +116,7 @@ class LeaderboardControllerTests {
 
         whenever(mockedService.getGameResults()).thenReturn(results)
 
-        val res = controller.getLeaderboardForRank(7)
+        val res = controller.getLeaderboard(7)
 
         assertEquals(6, res.size)
         assertEquals(listOf(4,5,6,7,8,9), res.map { it.id.toInt() })
@@ -128,7 +128,7 @@ class LeaderboardControllerTests {
 
         whenever(mockedService.getGameResults()).thenReturn(results)
 
-        val res = controller.getLeaderboardForRank(9)
+        val res = controller.getLeaderboard(9)
 
         assertEquals(4, res.size)
         assertEquals(listOf(6,7,8,9), res.map { it.id.toInt() })
@@ -141,7 +141,7 @@ class LeaderboardControllerTests {
         whenever(mockedService.getGameResults()).thenReturn(results)
 
         assertThrows<ResponseStatusException> {
-            controller.getLeaderboardForRank(10)
+            controller.getLeaderboard(10)
         }
     }
 
